@@ -8,7 +8,7 @@ WORKDIR /app
 # Install Node without having the whole application files (cache)
 COPY package*.json ./
 
-RUN npm install && npm cache clean --force
+RUN npm install
 
 COPY . .
 
