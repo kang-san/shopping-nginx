@@ -38,22 +38,22 @@ services:
     networks:
       - mern-app
 
-#  frontend:
-#    container_name: react-app
-#    restart: always
-#    build:
-#      context: ./frontend
-#      dockerfile: Dockerfile
-#    volumes:
-#      - ./frontend:/app
-#    depends_on:
-#      - api-server
-#    stdin_open: true
-#    tty: true
-#    ports:
-#      - 3000:3000
-#    networks:
-#      - mern-app
+  frontend:
+    container_name: react-app
+    restart: always
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - api-server
+    stdin_open: true
+    tty: true
+    ports:
+      - 3000:3000
+    networks:
+      - mern-app
 #
 #  nginx:
 #    container_name: nginx
