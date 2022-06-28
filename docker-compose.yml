@@ -1,0 +1,76 @@
+version: '3.9'
+services:
+  backend:
+    restart: on-failure
+    container_name: api-server
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - /backend/node_modules
+      - ./backend:/app
+    env_file:
+      - .env
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongo
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      MONGO_URI: mongodb://${DB_USER}:${DB_PASSWORD}@mongodb
+    networks:
+      - mern-app
+
+  mongodb:
+    container_name: db
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONO_INITDB_ROOT_USERNAME: "${DB_USER}"
+      MONO_INITDB_ROOT_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - /etc/mongod.conf:/etc/mongod.conf
+      - ~/data/db:/data/db
+      - ~/data/journal:/data/db/journal
+      - ~/data/log:/var/log/mongodb
+    networks:
+      - mern-app
+
+#  frontend:
+#    container_name: react-app
+#    restart: always
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
+#    volumes:
+#      - ./frontend:/app
+#    depends_on:
+#      - api-server
+#    stdin_open: true
+#    tty: true
+#    ports:
+#      - 3000:3000
+#    networks:
+#      - mern-app
+#
+#  nginx:
+#    container_name: nginx
+#    restart: always
+#    build:
+#      context: ./nginx
+#      dockerfile: Dockerfile
+#    ports:
+#      - 80:80
+#    depends_on:
+#      - backend
+#      - frontend
+#    networks:
+#      - mern-app
+
+networks:
+  mern-app:
+    driver: bridge
+
+
