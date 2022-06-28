@@ -6,7 +6,7 @@ FROM node:16.14.0
 WORKDIR /app
 
 # Install Node without having the whole application files (cache)
-COPY package*.json ./
+COPY package*.json .
 
 RUN npm install
 
