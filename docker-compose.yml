@@ -7,6 +7,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     volumes:
+      - /app/node_modules
       - ./backend:/app
     env_file:
       - .env
@@ -30,10 +31,7 @@ services:
       MONO_INITDB_ROOT_USERNAME: "${DB_USER}"
       MONO_INITDB_ROOT_PASSWORD: "${DB_PASSWORD}"
     volumes:
-      - /etc/mongod.conf:/etc/mongod.conf
-      - ~/data/db:/data/db
-      - ~/data/journal:/data/db/journal
-      - ~/data/log:/var/log/mongodb
+      - mongodb-data:/data/db
     networks:
       - mern-app
 
@@ -44,6 +42,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     volumes:
+      - /app/node_modules
       - ./frontend:/app
     depends_on:
       - api-server
