@@ -8,12 +8,13 @@ WORKDIR /app
 # Install Node without having the whole application files (cache)
 COPY package*.json ./
 
-RUN rm -rf node_modules package-lock.json && npm install
+RUN rm -rf node_modules package-lock.json
+RUN npm install express
+RUN npm install
 COPY . .
 
 EXPOSE 5000
 
 # Containers run nginx with global directives and daemon off
 CMD ["npm", "start"]
-
 
