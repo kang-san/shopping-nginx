@@ -71,4 +71,6 @@ networks:
   mern-app:
     driver: bridge
 
-
+volumes:
+  mongodb-data:
+    driver: local
