@@ -1,13 +1,13 @@
-import express from 'express';
-import mongoose from "mongoose";
-import userRouter from "./routers/userRouter.js";
-import productRouter from "./routers/productRouter.js";
-import dotenv from "dotenv";
-import orderRouter from "./routers/orderRouter.js";
-import cors from "cors";
+const express = require('express');
+const connectToDB = require("./database/db.js");
+const userRouter = require("./routers/userRouter.js");
+const productRouter = require("./routers/productRouter.js");
+const orderRouter = require("./routers/orderRouter.js");
+const dotenv = require("dotenv");
+const cors = require("cors");
 
 dotenv.config({
-    path : "../.env"
+    path : ".env.server"
 });
 
 
@@ -35,12 +35,7 @@ const {
 console.log("DB_USER     " + DB_USER)
 console.log("DB_password     " + DB_PASSWORD)
 
-await mongoose
-    .connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Successfully connected to mongodb'))
-    .catch(e => console.error(e));
-//.connect(`mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`, { useNewUrlParser: true, useUnifiedTopology: true })
-
+connectToDB();
 
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);

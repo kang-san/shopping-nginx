@@ -1,7 +1,7 @@
-import jwt from "jsonwebtoken";
-import * as mongoose from "mongoose";
+const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 
-export const generateToken = (user) => {
+const generateToken = (user) => {
     return jwt.sign({
             _id: user._id,
             name: user.name,
@@ -14,7 +14,7 @@ export const generateToken = (user) => {
         });
 };
 
-export const isAuth = (req, res, next) => {
+const isAuth = (req, res, next) => {
     const authorization = req.headers.authorization;
     if(authorization) {
         const token = authorization.slice(7, authorization.length)
@@ -31,10 +31,12 @@ export const isAuth = (req, res, next) => {
     }
 };
 
-export const isAdmin = (req, res, next) => {
+const isAdmin = (req, res, next) => {
     if(req.user && req.user.isAdmin) {
         next();
     } else {
         res.status(401).send({message: 'Invalid Admin Token'})
     }
 }
+
+module.exports = { isAuth, isAdmin, generateToken};
