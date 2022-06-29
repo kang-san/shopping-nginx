@@ -52,20 +52,20 @@ services:
       - 3000:3000
     networks:
       - mern-app
-#
-#  nginx:
-#    container_name: nginx
-#    restart: always
-#    build:
-#      context: ./nginx
-#      dockerfile: Dockerfile
-#    ports:
-#      - 80:80
-#    depends_on:
-#      - backend
-#      - frontend
-#    networks:
-#      - mern-app
+
+  nginx:
+    container_name: nginx
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - mern-app
 
 networks:
   mern-app:
