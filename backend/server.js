@@ -34,7 +34,7 @@ const {
 
 console.log("DB_USER     " + DB_USER)
 console.log("DB_password     " + DB_PASSWORD)
-console.log("DB_password     " + DB_HOST)
+console.log("DB_HOST     " + DB_HOST)
 
 
 connectToDB();
