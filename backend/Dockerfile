@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN rm -rf node_modules package-lock.json && npm install
-COPY . .
+COPY ./backend .
 
 EXPOSE 5000
 

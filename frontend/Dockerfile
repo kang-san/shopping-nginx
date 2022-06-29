@@ -15,7 +15,7 @@ RUN CI=true
 RUN npm install
 
 # 소스를 작업폴더로 복사하고 빌드
-COPY . .
+COPY ./frontend .
 RUN npm run build
 
 FROM nginx:1.17.0-alpine
