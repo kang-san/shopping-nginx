@@ -7,7 +7,6 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     volumes:
-      - /backend/node_modules
       - ./backend:/app
     env_file:
       - .env
