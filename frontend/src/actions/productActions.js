@@ -8,7 +8,6 @@ import {
     PRODUCT_LIST_SUCCESS, PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_SUCCESS
 } from "../constants/productConstants";
 import Axios from "axios";
-import http from "../http-common";
 
 export const listProducts = () => async (dispatch) => {
     dispatch({
