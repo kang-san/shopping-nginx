@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "proxy": "http://172.31.91.235:5000",
+  "proxy": "http://7zone.co.kr:5000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
