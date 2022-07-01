@@ -8,14 +8,22 @@ import {
     PRODUCT_LIST_SUCCESS, PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_SUCCESS
 } from "../constants/productConstants";
 import Axios from "axios";
+const ROOT_URL =  'http://localhost:5000';
+
+Axios.defaults.baseURL = ROOT_URL;
+if (localStorage.getItem('auth_jwt_token')) {
+    Axios.defaults.headers.common['Authorization'] = localStorage.getItem('auth_jwt_token');
+}
+Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 export const listProducts = () => async (dispatch) => {
     dispatch({
        type: PRODUCT_LIST_REQUEST
     });
     try{
-        const { data } = await Axios.get('/api/products');
-        console.log("product List ===========>>>>   "+ JSON.stringify(data))
+        console.log("product List URL ===========>>>>   "+ Axios.defaults.baseURL);
+        const { data } = await Axios.get('/api/products')
+            .catch((Error)=>{console.log(Error)});
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data
