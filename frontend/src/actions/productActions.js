@@ -22,8 +22,9 @@ export const listProducts = () => async (dispatch) => {
     });
     try{
         console.log("product List URL ===========>>>>   "+ Axios.defaults.baseURL);
-        const { data } = await Axios.get('/api/products')
-            .catch((Error)=>{console.log(Error)});
+        const { data } = await Axios.get('/api/products');
+        console.log("product List >>>>   "+ data);
+
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data
