@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended: true}));
 
 //CORS 미들웨어 설정
 const corsOptions  = {
-    origin: process.env.CLIENT_ORIGEN || "http://172.31.93.123:3000"
+    origin: process.env.CLIENT_ORIGEN || "http://7zone.co.kr:3000"
 };
 
 console.log("CLIENT_ORIGIN     " + process.env.CLIENT_ORIGIN)
@@ -51,5 +51,5 @@ const PORT = process.env.NODE_DOCKER_PORT || 5000;
 console.log("NODE_DOCKER_PORT     " + process.env.NODE_DOCKER_PORT)
 
 app.listen(PORT, () =>{
-    console.log(`Server at http://172.31.93.123:${PORT}`);
+    console.log(`Server at http://7zone.co.kr:${PORT}`);
 });
