@@ -14,7 +14,7 @@ Axios.defaults.baseURL = ROOT_URL;
 if (localStorage.getItem('auth_jwt_token')) {
     Axios.defaults.headers.common['Authorization'] = localStorage.getItem('auth_jwt_token');
 }
-Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+Axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export const listProducts = () => async (dispatch) => {
     dispatch({
