@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended: true}));
 
 //CORS 미들웨어 설정
 const corsOptions  = {
-    origin: process.env.CLIENT_ORIGEN || "http://7zone.co.kr:3000"
+    origin: process.env.CLIENT_ORIGEN || "http://7zone.co.kr:5000"
 };
 
 console.log("CLIENT_ORIGIN     " + process.env.CLIENT_ORIGIN)
