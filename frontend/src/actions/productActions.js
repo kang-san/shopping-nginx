@@ -8,7 +8,7 @@ import {
     PRODUCT_LIST_SUCCESS, PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_SUCCESS
 } from "../constants/productConstants";
 import Axios from "axios";
-const ROOT_URL =  'http://172.31.93.123:5000';
+const ROOT_URL =  'http://7zone.co.kr:5000';
 
 Axios.defaults.baseURL = ROOT_URL;
 if (localStorage.getItem('auth_jwt_token')) {
