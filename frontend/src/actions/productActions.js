@@ -8,13 +8,13 @@ import {
     PRODUCT_LIST_SUCCESS, PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_SUCCESS
 } from "../constants/productConstants";
 import Axios from "axios";
-// const ROOT_URL =  'http://7zone.co.kr:5000';
-//
-// Axios.defaults.baseURL = ROOT_URL;
-// if (localStorage.getItem('auth_jwt_token')) {
-//     Axios.defaults.headers.common['Authorization'] = localStorage.getItem('auth_jwt_token');
-// }
-// Axios.defaults.headers.post['Content-Type'] = 'application/json';
+const ROOT_URL =  'http://7zone.co.kr:5000';
+
+Axios.defaults.baseURL = ROOT_URL;
+if (localStorage.getItem('auth_jwt_token')) {
+    Axios.defaults.headers.common['Authorization'] = localStorage.getItem('auth_jwt_token');
+}
+Axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export const listProducts = () => async (dispatch) => {
     dispatch({
