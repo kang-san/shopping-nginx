@@ -15,7 +15,7 @@ import ProductScreen from './screens/ProductScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
-import SignininScreen from './screens/SignininScreen';
+import SignScreen from './screens/SignScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
 import UserListScreen from './screens/UserListScreen';
@@ -183,10 +183,10 @@ function App() {
                         ></Route>
                         <Route
                             path="/product/:id/edit"
-                            element={<ProductEditScreen />}
+                            element={ProductEditScreen}
                             exact
                         ></Route>
-                        <Route path="/signin" element={<SignininScreen />}></Route>
+                        <Route path="/signin" element={<SignScreen />}></Route>
                         <Route path="/register" element={<RegisterScreen />}></Route>
                         <Route path="/shipping" element={<ShippingAddressScreen />}></Route>
                         <Route path="/payment" element={<PaymentMethodScreen />}></Route>
