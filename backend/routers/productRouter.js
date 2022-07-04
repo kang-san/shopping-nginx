@@ -1,20 +1,27 @@
 
 const express = require('express');
-const isAdmin = require("../utils.js");
-const isAuth = require("../utils.js");
-const  {productAllCtrl, productDummyCtrl, productDetailCtrl, productCreateCtrl, productUpdateCtrl}
+const { isAdmin, isAuth } = require("../utils.js");
+const  {productAllCtrl, productCategoriesCtrl, productDummyCtrl, productDetailCtrl, productCreateCtrl,
+    productUpdateCtrl, productDeleteCtrl, productReviewsCtrl}
 = require("../controllers/productCtrl.js");
 
 const productRouter = express.Router();
 
 productRouter.get('/', productAllCtrl);
 
+productRouter.get('/categories', productCategoriesCtrl)
+
 productRouter.get('/seed', productDummyCtrl);
 
 productRouter.get('/:id', productDetailCtrl);
 
-// productRouter.post('/createproduct', isAuth, isAdmin, productCreateCtrl);
+productRouter.post('/createproduct', isAuth, isAdmin, productCreateCtrl);
 
-// productRouter.put('/:id', isAuth, isAdmin, productUpdateCtrl);
+productRouter.put('/:id', isAuth, isAdmin, productUpdateCtrl);
+
+productRouter.delete('/:id', isAuth, isAdmin, productDeleteCtrl);
+
+productRouter.post( '/:id/reviews', isAuth, productReviewsCtrl);
+
 
 module.exports = productRouter;

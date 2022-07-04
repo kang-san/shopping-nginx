@@ -3,17 +3,33 @@ const bcrypt = require("bcryptjs");
 const data = {
     users: [
         {
-            name: 'kang',
-            email: 'junbuck01@naver.com',
-            password: bcrypt.hashSync('1111', 8),
+            name: 'san',
+            email: 'junbuck@gmail.com',
+            password: bcrypt.hashSync('1214', 8),
+            isSeller:true,
             isAdmin: true,
+            seller: {
+                name: 'san',
+                logo: '/images/p2.jpg',
+                description: '강산',
+                rating: 4.5,
+                numReviews: 120,
+            },
         },
         {
-            name: 'san',
-            email: 'junbuck01@ver.com',
-            password: bcrypt.hashSync('1111', 8),
-            isAdmin: true,
-        }
+            name: 'kang',
+            email: 'junbuc@naver.com',
+            password: bcrypt.hashSync('1214', 8),
+            isSeller: true,
+            isAdmin: false,
+            seller: {
+                name: 'kang',
+                logo: '/images/p1.jpg',
+                description: '강산',
+                rating: 4.5,
+                numReviews: 120,
+            },
+        },
     ],
     products: [
         {

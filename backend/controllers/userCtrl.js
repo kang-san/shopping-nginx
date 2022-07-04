@@ -4,10 +4,17 @@ const User = require("../models/userModels.js");
 const expressAsyncHandler = require("express-async-handler");
 const generateToken = require("../utils.js");
 
+const sellersCtrl = expressAsyncHandler(async (req, res) => {
+        const topSellers = await User.find({ isSeller: true })
+            .sort({ 'seller.rating': -1 })
+            .limit(3);
+        res.send(topSellers);
+    }
+);
 
 const userDummyCtrl = expressAsyncHandler(async(req, res)=>{
 
-    // await User.remove({});
+    await User.remove({});
     const createdUsers = await User.insertMany(data.users);
     res.send({createdUsers});
 });
@@ -79,5 +86,42 @@ const userProfileUpdateCtrl = expressAsyncHandler(async (req, res) => {
         }
 });
 
+const usersCtrl = expressAsyncHandler(async (req, res) => {
+        const users = await User.find({});
+        res.send(users);
+    }
+);
 
-module.exports= {userDummyCtrl, userRegisterCtrl, userSigninCtrl, userDetailCtrl, userProfileUpdateCtrl};
+const userDelete = expressAsyncHandler(async (req, res) => {
+        const user = await User.findById(req.params.id);
+        if (user) {
+            if (user.email === 'admin@example.com') {
+                res.status(400).send({ message: 'Can Not Delete Admin User' });
+                return;
+            }
+            const deleteUser = await user.remove();
+            res.send({ message: 'User Deleted', user: deleteUser });
+        } else {
+            res.status(404).send({ message: 'User Not Found' });
+        }
+    }
+);
+
+const userUpdateCtrl = expressAsyncHandler(async (req, res) => {
+        const user = await User.findById(req.params.id);
+        if (user) {
+            user.name = req.body.name || user.name;
+            user.email = req.body.email || user.email;
+            user.isSeller = Boolean(req.body.isSeller);
+            user.isAdmin = Boolean(req.body.isAdmin);
+            // user.isAdmin = req.body.isAdmin || user.isAdmin;
+            const updatedUser = await user.save();
+            res.send({ message: 'User Updated', user: updatedUser });
+        } else {
+            res.status(404).send({ message: 'User Not Found' });
+        }
+    }
+);
+
+module.exports= {sellersCtrl, userDummyCtrl, userRegisterCtrl, userSigninCtrl,
+    userDetailCtrl, userProfileUpdateCtrl, usersCtrl, userDelete, userUpdateCtrl};
